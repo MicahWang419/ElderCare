@@ -45,11 +45,11 @@ public class CarePostController {
 
     @GetMapping("/{id}")
     public Optional<CarePost> getPostById(@PathVariable Integer id) {
-        return carePostService.getDetailById(id);
+        return carePostService.getDetailById(id); //获取具体的post信息
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePostById(@PathVariable Integer id) {
+    public ResponseEntity<?> deletePostById(@PathVariable Integer id) { //软删除
         boolean success = carePostService.softDeleted(id);
         if (success) {
             return ResponseEntity.ok("Post deleted.");
@@ -57,4 +57,5 @@ public class CarePostController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }
